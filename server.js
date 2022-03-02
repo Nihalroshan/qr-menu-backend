@@ -7,5 +7,7 @@ app.get('/',(req,res) =>{
     res.send('home');
 });
 
-app.listen(4000);
+const PORT = 4000;
+
+app.listen(PORT,()=>console.log(`Listening to port ${PORT}`));
 
