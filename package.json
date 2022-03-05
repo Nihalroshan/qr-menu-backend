@@ -1,7 +1,27 @@
 {
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.3",
+    "mongoose": "^6.2.4",
     "node": "^17.4.0",
     "nodemon": "^2.0.15"
-  }
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "final-project-backend",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nihalroshan/final-project-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nihalroshan/final-project-backend/issues"
+  },
+  "homepage": "https://github.com/Nihalroshan/final-project-backend#readme",
+  "description": ""
 }
