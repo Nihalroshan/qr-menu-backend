@@ -4,6 +4,7 @@ const app = express();
 const mongoose = require("mongoose");
 
 const adminProducts = require("./routes/admin/products");
+const adminCategories= require("./routes/admin/categories");
 
 app.use(express.json());
 
@@ -11,6 +12,7 @@ app.use(cors());
 
 //Routes
 app.use("/api/admin/products", adminProducts);
+app.use("/api/admin/categories",adminCategories);
 
 //DB
 mongoose
