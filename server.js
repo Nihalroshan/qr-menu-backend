@@ -14,7 +14,7 @@ app.use(cors());
 //Routes
 app.use("/api/admin/products", adminProducts);
 app.use("/api/admin/categories", adminCategories);
-app.use("/api/admin/login", adminLogin);
+app.use("/api/admin/auth", adminLogin);
 
 //DB
 mongoose
