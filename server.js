@@ -3,18 +3,20 @@ const cors = require("cors");
 const app = express();
 const mongoose = require("mongoose");
 
-const adminProducts = require("./routes/admin/products");
-const adminCategories = require("./routes/admin/categories");
-const adminLogin=require("./routes/admin/login")
+const products = require("./routes/products");
+const categories = require("./routes/categories");
+const login = require("./routes/login");
+const client = require("./routes/clients");
 
 app.use(express.json());
 
 app.use(cors());
 
 //Routes
-app.use("/api/admin/products", adminProducts);
-app.use("/api/admin/categories", adminCategories);
-app.use("/api/admin/login", adminLogin);
+app.use("/api/products", products);
+app.use("/api/categories", categories);
+app.use("/api/auth", login);
+app.use("/api/client", client);
 
 //DB
 mongoose

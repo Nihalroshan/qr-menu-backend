@@ -1,8 +1,6 @@
 const express = require("express");
-const req = require("express/lib/request");
-const res = require("express/lib/response");
 const router = express.Router();
-const Product = require("../../models/admin/Product");
+const Product = require("../models/Product");
 
 //Get all products details
 router.get("/", async (req, res) => {
@@ -49,7 +47,9 @@ router.delete("/:productId", async (req, res) => {
   try {
     const product = await Product.findById(req.params.productId);
     if (!product) return res.status(404).send("Product not found.");
-    const deletedProduct = await Product.deleteOne({ _id: req.params.productId });
+    const deletedProduct = await Product.deleteOne({
+      _id: req.params.productId,
+    });
     res.send(deletedProduct);
   } catch (err) {
     res.send({ message: err });
