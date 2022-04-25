@@ -1,6 +1,8 @@
 const express = require("express");
+const adminAuth = require("../middlewares/adminAuth");
 const router = express.Router();
 const Product = require("../models/Product");
+const parser = require("../middlewares/imageUploadMiddleware");
 
 //Get all products details
 router.get("/", async (req, res) => {
@@ -13,14 +15,14 @@ router.get("/", async (req, res) => {
 });
 
 //Submits a product
-router.post("/", async (req, res) => {
-  const { name, description, category, price, imageUrl } = req.body;
+router.post("/", adminAuth, parser.single("image"), async (req, res) => {
+  const { name, description, category, price } = req.body;
   let product = new Product({
     name,
     description,
     category,
     price,
-    imageUrl,
+    imageUrl: req.file.path,
   });
 
   try {
@@ -43,7 +45,7 @@ router.get("/:productId", async (req, res) => {
 });
 
 //Delete a Product
-router.delete("/:productId", async (req, res) => {
+router.delete("/:productId", adminAuth, async (req, res) => {
   try {
     const product = await Product.findById(req.params.productId);
     if (!product) return res.status(404).send("Product not found.");
@@ -57,7 +59,7 @@ router.delete("/:productId", async (req, res) => {
 });
 
 //Update a Prduct
-router.patch("/:productId", async (req, res) => {
+router.patch("/:productId", adminAuth, async (req, res) => {
   try {
     const { productId } = req.params;
     const product = await Product.findById(productId);
