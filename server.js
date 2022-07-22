@@ -7,6 +7,7 @@ const products = require("./routes/products");
 const categories = require("./routes/categories");
 const login = require("./routes/login");
 const client = require("./routes/clients");
+const orders = require("./routes/orders");
 
 app.use(express.json());
 
@@ -17,6 +18,7 @@ app.use("/api/products", products);
 app.use("/api/categories", categories);
 app.use("/api/auth", login);
 app.use("/api/client", client);
+app.use("/api/orders", orders);
 
 //DB
 mongoose

@@ -1,4 +1,5 @@
 const express = require("express");
+const adminAuth = require("../middlewares/adminAuth");
 const router = express.Router();
 const Category = require("../models/Category");
 
@@ -13,12 +14,11 @@ router.get("/", async (req, res) => {
 });
 
 //Submits a Category
-router.post("/", async (req, res) => {
-  const { name, description, imageUrl } = req.body;
+router.post("/", adminAuth, async (req, res) => {
+  const { name, description } = req.body;
   let category = new Category({
     name,
     description,
-    imageUrl,
   });
 
   try {
@@ -41,7 +41,7 @@ router.get("/:categoryId", async (req, res) => {
 });
 
 //Delete a Specific Category
-router.delete("/:categoryId", async (req, res) => {
+router.delete("/:categoryId", adminAuth, async (req, res) => {
   try {
     const category = await Category.findById(req.params.categoryId);
     if (!category) return res.status(404).send("Category Not found.");
@@ -55,7 +55,7 @@ router.delete("/:categoryId", async (req, res) => {
 });
 
 //Update a Category
-router.patch("/:categoryId", async (req, res) => {
+router.patch("/:categoryId", adminAuth, async (req, res) => {
   try {
     const { categoryId } = req.params;
     const category = await Category.findById(categoryId);

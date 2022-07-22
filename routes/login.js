@@ -34,10 +34,10 @@ router.post("/login", async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await Login.findOne({ email: email });
-    if (!user) return res.send("Email doesn't match.");
+    if (!user) return res.status(400).send("Email doesn't match.");
 
     const passwordMatches = await bcrypt.compare(password, user.password);
-    if (!passwordMatches) return res.send("Password doesn't match");
+    if (!passwordMatches) return res.status(400).send("Password doesn't match");
     res.send({
       message: "Login successfull",
       user: {
