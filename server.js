@@ -1,3 +1,5 @@
+require("dotenv").config(); // this loads env vars
+
 const express = require("express");
 const cors = require("cors");
 const app = express();
@@ -22,9 +24,7 @@ app.use("/api/orders", orders);
 
 //DB
 mongoose
-  .connect(
-    "mongodb+srv://thanos:T3TjzjiRJ956PMYn@cluster0.4kiky.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
-  )
+  .connect(process.env.DATABASE_URL)
   .then(() => console.log("Connected to MongoDB..."))
   .catch((err) => console.error("Could not connect to MongoDB..."));
 
