@@ -1,7 +1,7 @@
 const express = require("express");
 const adminAuth = require("../middlewares/adminAuth");
 const router = express.Router();
-const Category = require("../models/Category");
+const Category = require("../models/category");
 
 //Get all category details
 router.get("/", async (req, res) => {
