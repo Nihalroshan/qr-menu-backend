@@ -1,7 +1,7 @@
 const express = require("express");
 const adminAuth = require("../middlewares/adminAuth");
 const router = express.Router();
-const Product = require("../models/Product");
+const Product = require("../models/product");
 const parser = require("../middlewares/imageUploadMiddleware");
 
 //Get all products details
